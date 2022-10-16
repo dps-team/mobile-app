@@ -3,36 +3,40 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput, Image, } from "rea
 import {globalStyle, buttonStyle, inputStyle} from '../styles/global'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
-// import {auth} from '../firebase/firebase-config'
+import {auth} from '../firebase/firebase-config'
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = (props) => {
 
     const lang = selectLang();
+    const navegation = useNavigation();
 
     const [state, setState] = useState({
         user:'',
         pass:''
     });
 
-    // const login = async () => {
-    //     try {
-    //         await auth.signInWithEmailAndPassword(state.user,state.pass)
-    //         .then(async (res)=> {
-    //             // localStorage.setItem('idUser', res.user.uid);
-    //             props.navigation.navigate('MenuScreen');
-    //         })
-    //         .catch((e)=>{
-    //             if(e.code === 'auth/user-not-found'){
-    //                 // console.log('autenticacion fallida')
-    //             }
-    //             if(e.code === 'auth/wrong-password'){
-    //                 // console.log('password incorrecta')
-    //             }
-    //         })
-    //     } catch (error) {
-    //         alert(error)
-    //     }
-    // };
+    const login = async () => {
+        try {
+            await auth.signInWithEmailAndPassword(state.user,state.pass)
+            .then(async (res)=> {
+                // localStorage.setItem('idUser', res.user.uid);
+                props.navigation.navigate('MenuScreen');
+                console.log("sii");
+            })
+            .catch((e)=>{
+                console.log(e);
+                if(e.code === 'auth/user-not-found'){
+                    // console.log('autenticacion fallida')
+                }
+                if(e.code === 'auth/wrong-password'){
+                    // console.log('password incorrecta')
+                }
+            })
+        } catch (error) {
+            alert(error)
+        }
+    };
 
     // const loginGoogle = async () => {
     //     try {
@@ -88,7 +92,7 @@ const LoginScreen = (props) => {
                     <TouchableOpacity
                         style={[buttonStyle.buttonPrimary]}
                         onPress={()=>{
-                            // login();
+                            login();
                         }}
                     >
                         <Text style={[buttonStyle.buttonLabel]}>{lang.Btn_Login}</Text>
@@ -97,6 +101,9 @@ const LoginScreen = (props) => {
                 <View >
                     <TouchableOpacity
                         style={[buttonStyle.buttonInvisible]}
+                        onPress={()=>{
+                            navegation.navigate("RecoveryAccountScreen")
+                        }}
                     >
                         <Text style={[buttonStyle.buttonInvisibleLabel]}>{lang.Btn_ForgotPass}</Text>
                     </TouchableOpacity>
