@@ -28,6 +28,10 @@ export const globalStyle = StyleSheet.create({
     mediumImg:{
         width: 150,
         height: 150,
+    },
+    largeImg:{
+        width: 220,
+        height: 220,
     }
 });
 
