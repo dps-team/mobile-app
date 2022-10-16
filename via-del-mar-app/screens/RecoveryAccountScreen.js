@@ -14,20 +14,17 @@ const RecoveryAccountScreen = (props) => {
     const lang = selectLang();
     const navegation = useNavigation();
 
-    const [errorEmail, setErrorEmail] = useState();
-    const [loading, setLoading] = useState();
-    const [token, setToken] = useState();
-
     const [state, setState] = useState({
         email:'',
+        loading: '',
+        errorEmail:''
     });
 
-    const handleChangeText = (name, value) =>{
+    const handleChange = (name, value) =>{
         setState({ ...state, [name]:value});
     }
 
     const Recovery = async()=>{
-    
         if(!validateData()){
             return;
         }
@@ -35,7 +32,6 @@ const RecoveryAccountScreen = (props) => {
 
         if(!res.statusResponse){
             console.log("Este correo no esta relacionado a ninguna cuenta");
-            console.log(res.error);
             Alert.alert("Error","Este correo no esta relacionado a ninguna cuenta");
             return;
         }
@@ -45,13 +41,13 @@ const RecoveryAccountScreen = (props) => {
     }
 
     const validateData = ()=> {
-        setErrorEmail(null);
+        handleChange('email',null);
         let valid = true;
        
         if(!emailValidation(state.email)){
+            handleChange('email',"Debes ingresar un email valido");
             console.log("Debes ingresar un email valido");
             Alert.alert("Error","Debes ingresar un email valido");
-            setErrorEmail("Debes ingresar un email valido");
             valid = false;
         }
         return valid;
@@ -88,7 +84,7 @@ const RecoveryAccountScreen = (props) => {
                         placeholder={lang.Pl_In_EmailRecoveryAccount}
                         keyboardType="email-address"
                         onChangeText={(value)=>{
-                            handleChangeText('email',value);
+                            handleChange('email',value);
                         }}
                     />
                 </View>
