@@ -32,6 +32,9 @@ export const globalProfile = StyleSheet.create({
     },
     leftMarg:{
         margin: 5,
+    },
+    ajustText:{
+        wordWrap: 'break-word',
     }
 });
 

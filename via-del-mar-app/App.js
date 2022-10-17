@@ -22,10 +22,10 @@ const App = () => {
           headerShown: false
         }}
       >
+        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
         <Stack.Screen name="ProfileScreen" component={ProfileScreen}/>
         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
-        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
         <Stack.Screen name="RecoveryAccountScreen" component={RecoveryAccoutScreen}/>
       </Stack.Navigator>
     );

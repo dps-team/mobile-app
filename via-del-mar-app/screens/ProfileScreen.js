@@ -7,6 +7,10 @@ import React, {useState, useEffect} from 'react'
 import { store } from '../firebase/firebase-config'
 
 export default function PerfilScreen(props) {
+
+    const goMenu = () => {
+        props.navigation.navigate('MenuScreen');
+    }
     
     const lang = selectLang();
 
@@ -20,7 +24,6 @@ export default function PerfilScreen(props) {
     }
 
     const [user, setUser] = useState(initialState);
-
     const [loading, setLoading] = useState(true);
 
     const getUserById = async (id) => {
@@ -48,8 +51,10 @@ export default function PerfilScreen(props) {
             email: user.email,
         })
         alert('Updated');
-        props.navigation.navigate('LoginScreen');
+        goMenu();
     }
+
+    
 
     // const createUser = async () => {
     //     if (state.name === '') {
@@ -182,7 +187,7 @@ export default function PerfilScreen(props) {
                     <TouchableOpacity
                         style={[buttonStyle.buttonSecond]}
                         onPress={()=>{
-                            
+                            goMenu();
                         }}
                     >
                         <Text style={[buttonStyle.buttonSecondLabel]}>{lang.Btn_CancelProfile}</Text>
