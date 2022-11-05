@@ -6,8 +6,7 @@ import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
 import {auth,sendPasswordResetEmail} from '../firebase/firebase-config'
 
-import { Field,Form,Formik } from 'formik';
-import recoveryValidationSchema from '../utils/validate'
+import {emailValidation} from '../utils/validate';
 
 
 const RecoveryAccountScreen = (props) => {
@@ -15,43 +14,42 @@ const RecoveryAccountScreen = (props) => {
     const lang = selectLang();
     const navegation = useNavigation();
 
-    const [errorEmail, setErrorEmail] = useState();
-    const [loading, setLoading] = useState();
-    const [token, setToken] = useState();
-
     const [state, setState] = useState({
         email:'',
+        loading: '',
+        errorEmail:''
     });
 
-    const handleChangeText = (name, value) =>{
+    const handleChange = (name, value) =>{
         setState({ ...state, [name]:value});
     }
 
     const Recovery = async()=>{
-    
         if(!validateData()){
             return;
         }
         const res = await sendEmail(state.email);
-        console.log(res);
 
         if(!res.statusResponse){
+            console.log("Este correo no esta relacionado a ninguna cuenta");
             Alert.alert("Error","Este correo no esta relacionado a ninguna cuenta");
             return;
         }
+        console.log("Correo Enviado con las instrucciones para actualizar la contraseña");
         Alert.alert("Success","Correo Enviado con las instrucciones para actualizar la contraseña");
         navegation.navigate("LoginScreen");
     }
 
     const validateData = ()=> {
-        setErrorEmail(null);
+        handleChange('email',null);
         let valid = true;
        
-        // if(recoveryValidationSchema({email: state.email})){
-        //     Alert.alert("Error","Debes ingresar un email valido");
-        //     setErrorEmail("Debes ingresar un email valido");
-        //     valid = false;
-        // }
+        if(!emailValidation(state.email)){
+            handleChange('email',"Debes ingresar un email valido");
+            console.log("Debes ingresar un email valido");
+            Alert.alert("Error","Debes ingresar un email valido");
+            valid = false;
+        }
         return valid;
     }
 
@@ -80,20 +78,13 @@ const RecoveryAccountScreen = (props) => {
                     />
                 </View>
 
-                {/* <Formik
-                onSubmit={(values) => console.log(values)}
-                validationSchema={recoveryValidationSchema}
-                initialValues={{
-                    email: "",
-                }}
-                > */}
                     <View >
                     <TextInput 
                         style={[inputStyle.input]} 
                         placeholder={lang.Pl_In_EmailRecoveryAccount}
                         keyboardType="email-address"
                         onChangeText={(value)=>{
-                            handleChangeText('email',value);
+                            handleChange('email',value);
                         }}
                     />
                 </View>
@@ -118,11 +109,7 @@ const RecoveryAccountScreen = (props) => {
                     >
                         <Text style={[buttonStyle.buttonSecondLabel]}>{lang.Btn_CancelRecoveryAccount}</Text>
                     </TouchableOpacity>
-                </View>
-                
-                {/* </Formik> */}
-
-                
+                </View>               
 
             </View>
         </ScrollView>
