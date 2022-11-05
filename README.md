@@ -7,6 +7,15 @@ https://www.figma.com/file/yIfa7Et7l1qpjLb3x7IufX/veterinarian-app?node-id=11%3A
 Clickup: 
 https://sharing.clickup.com/36269286/b/h/4-60264805-2/d96282b56c0f55b
 
+Manual de usuario:
+https://www.canva.com/design/DAFPPuhBbPI/kqM_hmRNUgN64hYxy49KHw/edit?utm_content=DAFPPuhBbPI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Manual técnico:
+https://www.canva.com/design/DAFPQwZnY3A/6QLMM0n_nlXn0cqp9zLz-g/edit?utm_content=DAFPQwZnY3A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Videos demostrativos:
+https://youtube.com/playlist?list=PLBuZ26qgFR73WWvE7dXDghf_WWkQ4SNW3
+
 Grupo:
 DPS 01T
 
