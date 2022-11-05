@@ -20,4 +20,4 @@ const storage = fb.storage();
 const google = new firebase.auth.GoogleAuthProvider();
 
 //  export {auth,store,storage, google}
- export {auth,store,storage,firebase,sendPasswordResetEmail}
+ export {auth,store,storage,firebase,sendPasswordResetEmail, google}
