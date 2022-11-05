@@ -10,6 +10,7 @@ import MenuScreen from "./screens/MenuScreen";
 import SplashScreen from "./screens/SplashScreen";
 import RecoveryAccoutScreen from "./screens/RecoveryAccountScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import FastQuestions from "./screens/FastQuestions";
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
           headerShown: false
         }}
       >
+        <Stack.Screen name="FastQuestions" component={FastQuestions} />
         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
         <Stack.Screen name="MenuScreen" component={MenuScreen}/>

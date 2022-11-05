@@ -14,6 +14,10 @@ export default function MenuScreen(props) {
         props.navigation.navigate('ProfileScreen');
     }
 
+    const goFastQuestions = () => {
+        props.navigation.navigate('FastQuestions');
+    };
+
     return (
         <ScrollView style={{backgroundColor:'white'}}>
             <View style={globalStyle.row}>
@@ -91,7 +95,7 @@ export default function MenuScreen(props) {
                     <TouchableOpacity
                         style={[buttonStyleMenu.buttonMenu,]}
                         onPress={()=>{
-                            
+                            goFastQuestions();
                         }}
                     >   
                     <View style={[globalProfile.flexRow,globalMenu.displayCentered]}>
