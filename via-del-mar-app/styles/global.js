@@ -73,6 +73,23 @@ export const buttonStyle = StyleSheet.create({
         width: 300,
         alignItems:'center', 
     },
+    buttonSecond: {
+        alignSelf: "center",
+        borderRadius: 15,
+        borderColor: '#CFCFCF',
+        borderWidth: 2,
+        backgroundColor: "white",
+        height: 55,
+        margin: 20,
+        marginHorizontal: "1%",
+        marginBottom: 6,
+        minWidth: "48%",
+        padding:10,
+        paddingVertical:15,
+        textAlign: "center",
+        width: 200,
+        alignItems:'center', 
+    },
     selected: {
         backgroundColor: "coral",
         borderWidth: 0,
@@ -95,6 +112,11 @@ export const buttonStyle = StyleSheet.create({
     },
     buttonInvisibleLabel:{
         color: "grey",
+        fontSize: 16,
+        fontWeight: "200",
+    },
+    buttonSecondLabel:{ 
+        color: "#CFCFCF",
         fontSize: 16,
         fontWeight: "200",
     }

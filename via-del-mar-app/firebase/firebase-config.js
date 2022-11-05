@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
+import {sendPasswordResetEmail} from 'firebase/auth'
 import 'firebase/compat/firestore'
 import 'firebase/compat/storage'
 
@@ -18,4 +19,5 @@ const store = fb.firestore();
 const storage = fb.storage();
 const google = new firebase.auth.GoogleAuthProvider();
 
- export {auth,store,storage, google}
+//  export {auth,store,storage, google}
+ export {auth,store,storage,firebase,sendPasswordResetEmail}

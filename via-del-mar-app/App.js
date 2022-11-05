@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from "./screens/LoginScreen";
 import MenuScreen from "./screens/MenuScreen";
 import SplashScreen from "./screens/SplashScreen";
+import RecoveryAccoutScreen from "./screens/RecoveryAccountScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 const App = () => {
 
@@ -20,9 +22,11 @@ const App = () => {
           headerShown: false
         }}
       >
+        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen}/>
         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
-        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
+        <Stack.Screen name="RecoveryAccountScreen" component={RecoveryAccoutScreen}/>
       </Stack.Navigator>
     );
   };

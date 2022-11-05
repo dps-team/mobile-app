@@ -3,11 +3,13 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput, Image, } from "rea
 import {globalStyle, buttonStyle, inputStyle} from '../styles/global'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
-import {auth, google} from '../firebase/firebase-config'
+import {auth, google} from '../firebase/firebase-config';
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = (props) => {
 
     const lang = selectLang();
+    const navegation = useNavigation();
 
     const [state, setState] = useState({
         user:'',
@@ -109,6 +111,9 @@ const LoginScreen = (props) => {
                 <View >
                     <TouchableOpacity
                         style={[buttonStyle.buttonInvisible]}
+                        onPress={()=>{
+                            navegation.navigate("RecoveryAccountScreen")
+                        }}
                     >
                         <Text style={[buttonStyle.buttonInvisibleLabel]}>{lang.Btn_ForgotPass}</Text>
                     </TouchableOpacity>
