@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from "./screens/LoginScreen";
 import MenuScreen from "./screens/MenuScreen";
 import SplashScreen from "./screens/SplashScreen";
+import Request from "./screens/Request";
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
           headerShown: false
         }}
       >
+        <Stack.Screen name="Request" component={Request}/>
         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
         <Stack.Screen name="MenuScreen" component={MenuScreen}/>
