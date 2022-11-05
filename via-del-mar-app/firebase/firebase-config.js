@@ -16,5 +16,6 @@ const fb = firebase.initializeApp(firebaseConfig);
 const auth = fb.auth();
 const store = fb.firestore();
 const storage = fb.storage();
+const google = new firebase.auth.GoogleAuthProvider();
 
- export {auth,store,storage}
+ export {auth,store,storage, google}

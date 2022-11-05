@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput, Image, } from "rea
 import {globalStyle, buttonStyle, inputStyle} from '../styles/global'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
-import {auth} from '../firebase/firebase-config'
+import {auth, google} from '../firebase/firebase-config'
 
 const LoginScreen = (props) => {
 
@@ -34,20 +34,22 @@ const LoginScreen = (props) => {
         }
     };
 
-    // const loginGoogle = async () => {
-    //     try {
-    //         const provider = new firebase.auth.GoogleAuthProvider();
-    //         console.log(provider);
-    //         firebase.auth().signInWithPopup(provider)
-    //         .then((result)=>{
-    //             console.log(result);
-    //             console.log(result.user.uid);
-    //         })
+    const loginGoogle = async () => {
+        try {
+            auth.signInWithPopup(google)
+            .then(res=>{
+                localStorage.setItem('idUser', res.user.uid);
+                props.navigation.navigate('MenuScreen');
+
+            })
+            .catch(err=>{
+                console.log(err);
+            })
             
-    //     } catch (error) {
-    //         alert(error)
-    //     }
-    // };
+        } catch (error) {
+            alert(error)
+        }
+    };
 
     const handleChangeText = (name, value) =>{
         setState({ ...state, [name]:value});
@@ -92,6 +94,16 @@ const LoginScreen = (props) => {
                         }}
                     >
                         <Text style={[buttonStyle.buttonLabel]}>{lang.Btn_Login}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View >
+                    <TouchableOpacity
+                        style={[buttonStyle.buttonPrimary]}
+                        onPress={()=>{
+                            loginGoogle();
+                        }}
+                    >
+                        <Text style={[buttonStyle.buttonLabel]}>{lang.Btn_Login_Google}</Text>
                     </TouchableOpacity>
                 </View>
                 <View >

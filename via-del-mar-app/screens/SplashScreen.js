@@ -23,7 +23,7 @@ const SplashScreen = (props) => {
             const login = () =>{ 
                 props.navigation.navigate('LoginScreen');
             }
-            setTimeout(login, 5000);
+            setTimeout(login, 500);
             return(
                 <View>
                     <Image
