@@ -12,6 +12,7 @@ export default function FastQuestions(props) {
     const lang = selectLang();
     
     const [pets, setPets] = useState(null);
+    const [user, setUser] = useState(null);
 
     const getPets = async () => {
         const dbRef = store.collection('pets');
@@ -22,6 +23,15 @@ export default function FastQuestions(props) {
         });
         setPets(list);
     };
+
+    const getUserById = async (id) => {
+        const dbRef = store.collection('users').doc(id);
+        const doc = await dbRef.get();
+        const user = doc.data();
+        console.log(user);
+        // setUser({ ...user, id: doc.id});
+        // setLoading(false)
+    }
 
     useEffect(()=>{
         getPets();
