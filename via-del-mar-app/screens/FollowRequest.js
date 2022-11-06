@@ -5,6 +5,7 @@ import {globalProfile} from '../styles/profile'
 import {buttonStyleMenu, globalMenu} from '../styles/fast_questions'
 import img_routes from '../img/img-routes'
 import { store } from '../firebase/firebase-config'
+import {TypeUser} from '../utils/Access'
 
 export default function FollowRequest() {
     
@@ -20,6 +21,22 @@ export default function FollowRequest() {
         });
         setPets(list);
     };
+
+    const getPetsClient = async () =>{
+        const petsUser = store.collection('pets');
+        petsUser.where("id", "==", `${localStorage.getItem("idUser")}`, true).get()
+        .then(async (querySnapshot)=>{
+            if(querySnapshot.size !=0){
+                const list = [];
+                querySnapshot.forEach(async(doc) =>{
+                    list.push(doc.data());
+                });
+                setPets(list);
+            }else{
+                console.log("Not found data")
+            }
+        });
+    }
 
     const getUserById = async () => {
         const id = localStorage.getItem('idUser')
@@ -38,9 +55,9 @@ export default function FollowRequest() {
         }
     };
 
-    useEffect(()=>{
-        getPets();
+    useEffect (async ()=>{
         getUserById();
+       await TypeUser(getPets,getPetsClient);
     },[])
 
     function ListPets() {

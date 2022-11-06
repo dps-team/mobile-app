@@ -3,7 +3,7 @@ import {globalStyle, buttonStyle} from '../styles/global'
 import {globalProfile, buttonProfile, inputProfile} from '../styles/profile'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
-import Access from '../utils/Access'
+import {Access} from '../utils/Access'
 import React, {useState, useEffect} from 'react'
 import { store } from '../firebase/firebase-config'
 

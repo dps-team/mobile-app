@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { store,auth } from '../firebase/firebase-config'
 import { useNavigation } from "@react-navigation/native";
-// import toastMsg from '../Toast';
 
 const Access = (props) => {
     const navegation = useNavigation();
@@ -11,7 +10,6 @@ const Access = (props) => {
         .then(res=>{
             localStorage.setItem('roles', JSON.stringify(res.data()));
             if(!JSON.parse(localStorage.getItem('roles'))[section]){
-                // toastMsg.errorToast("No tienes permisos para esta sección");
                 navegation.navigate('LoginScreen');
                 alert('No tienes permisos para esta sección');
             }
@@ -29,4 +27,15 @@ const Access = (props) => {
     return(null);
 }
 
-export default Access
+    const TypeUser = async (functionIsTrue, functionIsFalse)=>{
+        await store.collection('roles').doc(localStorage.getItem('idUser')).get()
+        .then(res=>{
+            if(res.data()){
+                return functionIsTrue();
+            }else{
+                return functionIsFalse();
+            }
+        });
+    };
+
+export  {Access, TypeUser}
