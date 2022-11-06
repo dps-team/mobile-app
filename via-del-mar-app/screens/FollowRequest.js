@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import {  Text, View, ScrollView, TouchableOpacity, Image,  } from 'react-native'
+import {  Text, View, ScrollView, TouchableOpacity, Image, Linking } from 'react-native'
 import {globalStyle} from '../styles/global'
 import {globalProfile} from '../styles/profile'
 import {buttonStyleMenu, globalMenu} from '../styles/fast_questions'
 import img_routes from '../img/img-routes'
-import selectLang from '../lang/index'
 import { store } from '../firebase/firebase-config'
 
-export default function FastQuestions(props) {
-    
-    const lang = selectLang();
+export default function FollowRequest() {
     
     const [pets, setPets] = useState(null);
+    const [user, setUser] = useState(null);
 
     const getPets = async () => {
         const dbRef = store.collection('pets');
@@ -23,8 +21,26 @@ export default function FastQuestions(props) {
         setPets(list);
     };
 
+    const getUserById = async () => {
+        const id = localStorage.getItem('idUser')
+        const dbRef = store.collection('users').doc(id);
+        const doc = await dbRef.get();
+        const user = doc.data();
+        setUser(user);
+    }
+
+    const sendWhatsApp = async (url) => {
+        const supported = await Linking.canOpenURL(url);
+        if (supported) {
+            await Linking.openURL(url);
+        } else {
+            // Alert.alert(`Don't know how to open this URL: ${url}`);
+        }
+    };
+
     useEffect(()=>{
         getPets();
+        getUserById();
     },[])
 
     function ListPets() {
@@ -36,7 +52,8 @@ export default function FastQuestions(props) {
                         <TouchableOpacity
                             style={[buttonStyleMenu.buttonMenu,]}
                             onPress={()=>{
-                                
+                                const url = `https://api.whatsapp.com/send?phone=50373488802&text=${'Hola Doc soy ' + user.name + ' usted me ayudo con mi mascota '+ item.Name + ' tengo una duda con el proceso post atención'}`
+                                sendWhatsApp(url);
                             }}
                         >   
                         <View style={[globalProfile.flexRow,globalMenu.displayCentered]}>

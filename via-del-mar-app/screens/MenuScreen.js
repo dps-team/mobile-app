@@ -1,4 +1,4 @@
-import {  Text, View, ScrollView, TouchableOpacity, Image,  } from 'react-native'
+import {  Text, View, ScrollView, TouchableOpacity, Image, Linking } from 'react-native'
 import {globalStyle} from '../styles/global'
 import {globalProfile} from '../styles/profile'
 import {buttonStyleMenu, globalMenu} from '../styles/menu'
@@ -9,13 +9,27 @@ import { store } from '../firebase/firebase-config'
 
 export default function MenuScreen(props) {
     
-    const lang = selectLang();
     const goProfile = () => {
         props.navigation.navigate('ProfileScreen');
     }
 
+    const sendWhatsApp = async (url) => {
+        const supported = await Linking.canOpenURL(url);
+        if (supported) {
+            await Linking.openURL(url);
+        } else {
+            // Alert.alert(`Don't know how to open this URL: ${url}`);
+        }
+    };
+
     const goFastQuestions = () => {
-        props.navigation.navigate('FastQuestions');
+        const url = `https://api.whatsapp.com/send?phone=50373488802&text=${'Hola Doc. queria consultar acerca de mi mascota tiene los siguientes sintomas: "Aquí escriba los sintomas."'}`
+        sendWhatsApp(url);
+    };
+    
+    const goFollowRequest = () => {
+        props.navigation.navigate('FollowRequest');
+        
     };
 
     return (
@@ -74,7 +88,7 @@ export default function MenuScreen(props) {
                     <TouchableOpacity
                         style={[buttonStyleMenu.buttonMenu,]}
                         onPress={()=>{
-                            
+                            goFollowRequest();
                         }}
                     >   
                     <View style={[globalProfile.flexRow,globalMenu.displayCentered]}>

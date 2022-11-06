@@ -10,7 +10,7 @@ import MenuScreen from "./screens/MenuScreen";
 import SplashScreen from "./screens/SplashScreen";
 import RecoveryAccoutScreen from "./screens/RecoveryAccountScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import FastQuestions from "./screens/FastQuestions";
+import FollowRequest from "./screens/FollowRequest";
 
 const App = () => {
 
@@ -23,10 +23,10 @@ const App = () => {
           headerShown: false
         }}
       >
-        <Stack.Screen name="FastQuestions" component={FastQuestions} />
+        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
+        <Stack.Screen name="FollowRequest" component={FollowRequest} />
         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
-        <Stack.Screen name="MenuScreen" component={MenuScreen}/>
         <Stack.Screen name="ProfileScreen" component={ProfileScreen}/>
         <Stack.Screen name="RecoveryAccountScreen" component={RecoveryAccoutScreen}/>
       </Stack.Navigator>
@@ -37,9 +37,6 @@ const App = () => {
     <NavigationContainer>
       <MyStack/>
     </NavigationContainer>
-    // <View style={[global.box]}>
-    //   <Text>Hello World</Text>
-    // </View>
   )
 };
 
