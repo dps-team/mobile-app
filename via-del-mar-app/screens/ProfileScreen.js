@@ -3,6 +3,7 @@ import {globalStyle, buttonStyle} from '../styles/global'
 import {globalProfile, buttonProfile, inputProfile} from '../styles/profile'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
+import Access from '../utils/Access'
 import React, {useState, useEffect} from 'react'
 import { store } from '../firebase/firebase-config'
 
@@ -14,7 +15,6 @@ export default function PerfilScreen(props) {
     
     const lang = selectLang();
 
-    const idUser = 'ECLzC7CKGVtjl41fZPpM';
     const initialState = {
         id: "",
         name: "",
@@ -35,7 +35,7 @@ export default function PerfilScreen(props) {
     }
 
     useEffect(() => {
-        getUserById(idUser);
+        getUserById(localStorage.getItem('idUser'));
     }, [])
     
     const handleChangeText = (name, value) => {
@@ -89,6 +89,7 @@ export default function PerfilScreen(props) {
 
     return (
         <ScrollView style={{backgroundColor:'white'}}>
+            <Access section="profile"/>
             <View style={globalStyle.row}>
                 {/* Logo */}
                 <View>

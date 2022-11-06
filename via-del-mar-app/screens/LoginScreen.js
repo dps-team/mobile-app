@@ -21,6 +21,7 @@ const LoginScreen = (props) => {
             await auth.signInWithEmailAndPassword(state.user,state.pass)
             .then(async (res)=> {
                 localStorage.setItem('idUser', res.user.uid);
+                console.log("idUsuario: " + res.user.uid);
                 props.navigation.navigate('MenuScreen');
             })
             .catch((e)=>{

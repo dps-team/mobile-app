@@ -4,6 +4,7 @@ import {globalProfile} from '../styles/profile'
 import {buttonStyleMenu, globalMenu} from '../styles/menu'
 import img_routes from '../img/img-routes'
 import selectLang from '../lang/index'
+import Access from '../utils/Access'
 import React, {useState, useEffect} from 'react'
 import { store } from '../firebase/firebase-config'
 
